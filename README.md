@@ -1,74 +1,83 @@
-# BLACKHOLE.sol - GIGANTIC BLACK HOLE NFT Contract
+# AI_NFT_Minting
 
-This is the README.md file for the "BLACKHOLE.sol" smart contract, which implements the creation and management of GIGANTIC BLACK HOLE Non-Fungible Tokens (NFTs) on the Ethereum blockchain.
+This repository provides a smart contract and scripts for minting and managing Non-Fungible Tokens (NFTs) on the Ethereum blockchain, specifically representing "GIGANTIC BLACK HOLE" NFTs.
 
 ## Contract Information
 
-- Contract Name: BLACKHOLE
-- Contract Type: ERC721A (Extends ERC721 standard)
-- Solidity Version: 0.8.9
-- License: MIT
+- **Contract Name:** BLACKHOLE
+- **Contract Type:** ERC721A (Extends ERC721 standard)
+- **Solidity Version:** 0.8.9
+- **License:** MIT
 
 ## Overview
 
-The "BLACKHOLE.sol" contract allows the owner to mint a limited number of GIGANTIC BLACK HOLE NFTs. These NFTs are ERC721A tokens, meaning they extend the ERC721 standard with additional functionalities. Each NFT represents a unique GIGANTIC BLACK HOLE and is associated with a prompt description.
+The `BLACKHOLE.sol` contract allows the owner to mint a limited number (5) of unique GIGANTIC BLACK HOLE NFTs. These tokens are based on the ERC721A standard, offering additional functionalities over the standard ERC721.
 
 ## Features
 
-1. **Minting**: The owner of the contract can mint GIGANTIC BLACK HOLE NFTs, limiting the total supply to 5 tokens.
-
-2. **Base URL**: The contract has a base URL that serves as the prefix for the NFT metadata URLs. The full metadata URL is constructed by appending the token ID to the base URL.
-
-3. **Prompt Description**: The contract provides a function to retrieve the prompt description, which is "GIGANTIC BLACK HOLE" in this case.
-
-## Contract Deployment
-
-Ensure you have the required dependencies, such as "erc721a/contracts/ERC721A.sol," and deploy the contract on the Ethereum network with Solidity version 0.8.9.
+1. **Minting:** The owner can mint up to 5 GIGANTIC BLACK HOLE NFTs.
+2. **Base URL:** The contract includes a base URL for the NFT metadata.
+3. **Prompt Description:** Provides a description for the NFTs, specifically "GIGANTIC BLACK HOLE."
 
 ## Contract Functions
 
 ### mint(uint256 quantity)
 
-Allows the owner to mint a specified quantity of GIGANTIC BLACK HOLE NFTs.
-
-- **Modifier**: onlyOwner (The function can only be executed by the contract owner.)
-- **Parameters**:
-  - `quantity`: The number of NFTs to be minted.
-- **Requirements**:
-  - The total supply of NFTs after minting must not exceed the maximum quantity (5).
+- **Description:** Mints the specified number of NFTs.
+- **Modifier:** onlyOwner
+- **Parameters:** `quantity` - The number of NFTs to mint.
+- **Requirements:** Total supply must not exceed 5.
 
 ### _baseURI() internal view override returns (string memory)
 
-Overrides the baseURI function from ERC721A to return the base URL for the NFTs.
-
-- **Returns**: The base URL for the NFTs.
+- **Description:** Returns the base URL for the NFTs.
 
 ### promptDescription() external view returns (string memory)
 
-Returns the prompt description associated with the GIGANTIC BLACK HOLE NFTs.
+- **Description:** Returns the prompt description "GIGANTIC BLACK HOLE."
 
-- **Returns**: The prompt description string.
+## Deployment
 
+Ensure dependencies such as `erc721a/contracts/ERC721A.sol` are in place and deploy the contract using Solidity 0.8.9.
 
-### Deploying the ERC721 Contract
+### Deploy to Goerli Testnet
 
- Run the following command to deploy the ERC721 contract to the Goerli Ethereum Testnet:
+```bash
+npx hardhat run scripts/deploy.js --network goerli
+```
 
-npx hardhat run scripts/deploy.js --network goerli 
+- Update `contractAddress.js` and `batchMint.js` with the generated contract address.
 
-## NOTE:
-After deploying the address will generate. So, copy that address into `contarctAddress.js`(stored in metadata folder) and also in `batchMint.js`(stored in scripts folder)
-
- 
-The script will deploy the contract 
 ### Batch Mint NFTs
 
+```bash
 npx hardhat run scripts/batchMint.js --network goerli
-
-The script will mint the specified number of NFTs and assign them to your address.
+```
 
 ### Approve and Deposit NFTs to Polygon Mumbai
 
-Run the following commands to approve and deposit the minted NFTs from Ethereum to the Polygon Mumbai network using the FxPortal Bridge:
+Use the FxPortal Bridge:
 
+```bash
 npx hardhat run scripts/approveDeposit.js --network goerli
+```
+
+## Repository Structure
+
+- **artifacts/**: Compiled contract artifacts.
+- **cache/**: Cached data.
+- **contracts/**: Solidity contract files.
+- **images/**: NFT images.
+- **metadata/**: Metadata for NFTs.
+- **scripts/**: Deployment and minting scripts.
+- **.env**: Environment variables.
+- **hardhat.config.js**: Hardhat configuration.
+- **package.json**: Project dependencies.
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+This README provides a clear and concise guide for understanding and using the AI_NFT_Minting project.
