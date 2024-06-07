@@ -77,7 +77,3 @@ npx hardhat run scripts/approveDeposit.js --network goerli
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-This README provides a clear and concise guide for understanding and using the AI_NFT_Minting project.
